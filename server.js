@@ -1,7 +1,10 @@
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+    mongoose = require('mongoose');
+
+Schema = mongoose.Schema;
     
 Object.assign=require('object-assign')
 
@@ -31,7 +34,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     // Provide UI label that excludes user id and pw
     mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
     mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-
+    
   }
 }
 var db = null,
@@ -40,10 +43,26 @@ var db = null,
 var initDb = function(callback) {
   if (mongoURL == null) return;
 
-  var mongodb = require('mongodb');
-  if (mongodb == null) return;
+  //var mongodb = require('mongodb');
+  //if (mongodb == null) return;
+  if (mongoose == null) return;
 
-  mongodb.connect(mongoURL, function(err, conn) {
+  /*mongodb.connect(mongoURL, function(err, conn) {
+    if (err) {
+      callback(err);
+      return;
+    }
+
+    db = conn;
+    dbDetails.databaseName = db.databaseName;
+    dbDetails.url = mongoURLLabel;
+    dbDetails.type = 'MongoDB';
+
+    console.log('Connected to MongoDB at: %s', mongoURL);
+  });
+  */
+
+  mongoose.connect(mongoURL, function(err, conn) {
     if (err) {
       callback(err);
       return;
