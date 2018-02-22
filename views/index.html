@@ -102,5 +102,19 @@ $ git push</pre>
           <div class="logo"><a href="https://www.openshift.com/"></a></div>
         </footer>
 </section>
+
+<script>
+    var ws = new WebSocket('ws://localhost:3000');
+    // event emmited when connected
+    ws.onopen = function () {
+        console.log('websocket is connected ...')
+        // sending a send event to websocket server
+        ws.send('connected')
+    }
+    // event emmited when receiving message 
+    ws.onmessage = function (ev) {
+        console.log(ev);
+    }
+</script>
 </body>
 </html>

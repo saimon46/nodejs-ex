@@ -2,7 +2,13 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    http = require('http');
+    url = require('url'),
+    expressWs = require('express-ws'),
+    WebSocket = require("ws").Server;
+
+exWs = expressWs(app)
 
 Schema = mongoose.Schema;
     
@@ -42,25 +48,7 @@ var db = null,
 
 var initDb = function(callback) {
   if (mongoURL == null) return;
-
-  //var mongodb = require('mongodb');
-  //if (mongodb == null) return;
   if (mongoose == null) return;
-
-  /*mongodb.connect(mongoURL, function(err, conn) {
-    if (err) {
-      callback(err);
-      return;
-    }
-
-    db = conn;
-    dbDetails.databaseName = db.databaseName;
-    dbDetails.url = mongoURLLabel;
-    dbDetails.type = 'MongoDB';
-
-    console.log('Connected to MongoDB at: %s', mongoURL);
-  });
-  */
 
   mongoose.connect(mongoURL, function(err, conn) {
     if (err) {
@@ -113,6 +101,26 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.ws('/wss', (ws, req) => {
+  console.log("New connection has opened!");
+
+  ws.send("Benvenuto!")
+
+    ws.on('open', (socket, request) => {
+      console.log('connesso')
+      ws.send("Ciaoooo")
+    })
+
+    ws.on('message', msg => {
+      console.log(msg)
+      ws.send(msg)
+    })
+
+    ws.on('close', () => {
+        console.log('WebSocket was closed')
+    })
+})
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
@@ -125,5 +133,14 @@ initDb(function(err){
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
+
+var wssAll = exWs.getWss('/wss');
+
+setInterval(function () {
+  wssAll.clients.forEach(function (client) {
+    client.send('Ciao! Siamo in '+wssAll.clients.size);
+  });
+}, 5000);
+
 
 module.exports = app ;
