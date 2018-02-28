@@ -9,6 +9,8 @@ var express = require('express'),
 
 Schema = mongoose.Schema;
 
+var CounterModel;
+
 Object.assign = require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -31,7 +33,8 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
     mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
     mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-    mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+    mongoPassword = process.env[mongoServiceName + '_PASSWORD'],
+    rootWebServer = process.env['ROOT_WEB_SERVER'],
   mongoUser = process.env[mongoServiceName + '_USER'];
 
   if (mongoHost && mongoPort && mongoDatabase) {
@@ -48,6 +51,27 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 var db = null,
   dbDetails = new Object();
 
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Schema DB @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+var counterSchema = mongoose.Schema({
+	count: Number
+});
+
+counterSchema.methods.increase = function () {
+	this.counter++;
+}
+counterSchema.methods.decrease = function () {
+	this.counter--;
+}
+counterSchema.methods.set = function (num) {
+	this.counter = num;
+}
+counterSchema.methods.reset = function () {
+	this.counter = 1;
+}
+
 var initDb = function(callback) {
   if (mongoURL == null) return;
   if (mongoose == null) return;
@@ -62,6 +86,18 @@ var initDb = function(callback) {
     dbDetails.databaseName = db.databaseName;
     dbDetails.url = mongoURLLabel;
     dbDetails.type = 'MongoDB';
+
+    CounterModel = db.model('counter', counterSchema);
+
+    CounterModel.count({}, function( err, count){
+    	if(count == 0){
+    		var counter = new CounterModel({ count: 1 });
+
+    		counter.save(function (err) {
+				if (err) return handleError(err);
+			})
+    	}
+	})
 
     console.log('Connected to MongoDB at: %s', mongoURL);
   });
@@ -98,9 +134,11 @@ app.get('/', function(req, res) {
       if (err) {
         console.log('Error running count. Message:\n' + err);
       }
+      console.log(rootWebServer)
       res.render('index.html', {
         pageCountMessage: count,
-        dbInfo: dbDetails
+        dbInfo: dbDetails,
+        rootWebServer: rootWebServer
       });
     });
   } else {
@@ -127,6 +165,98 @@ app.get('/pagecount', function(req, res) {
     });
   } else {
     res.send('{ pageCount: -1 }');
+  }
+});
+
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Set counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+app.get('/set/:num', function(req, res) {
+  num = req.params.num;
+
+  if(num){
+  	if (!db) {
+	    initDb(function(err) {});
+	}
+	if (db) {
+		if(num <= 0)
+			num = 1;
+	    CounterModel.findOneAndUpdate({},{ $set: { count: num }}, function( err, counter ){
+	    	res.send('{ counter: '+ num +' }');
+		})
+	}
+  }
+  
+});
+
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Increase counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+app.get('/increment', function(req, res) {
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err) {});
+  }
+  if (db) {
+  	exCount = undefined;
+
+  	CounterModel.findOne( function(err, counter){
+  		exCount = counter.count+1;
+
+  		CounterModel.findOneAndUpdate({},{ $set: { count: exCount }}, function( err, counter ){
+			res.send('{ counter: '+ exCount +' }');
+		})
+  	})
+  }
+});
+
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Decrease counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+app.get('/decrement', function(req, res) {
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err) {});
+  }
+  if (db) {
+  	exCount = undefined;
+
+  	CounterModel.findOne( function(err, counter){
+  		exCount = counter.count-1;
+
+  		if(exCount = 0)
+  			exCount = 1
+
+  		CounterModel.findOneAndUpdate({},{ $set: { count: exCount }}, function( err, counter ){
+			res.send('{ counter: '+ exCount +' }');
+		})
+  	})
+  }
+});
+
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Reset counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+app.get('/reset', function(req, res) {
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err) {});
+  }
+  if (db) {
+  	CounterModel.findOneAndUpdate({},{ $set: { count: 1 }}, function( err, counter ){
+		res.send('{ counter: '+ 1 +' }');
+	})
   }
 });
 
