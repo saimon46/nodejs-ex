@@ -8,18 +8,18 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var Counter = require("./models/counter");
 var fs = require('fs');
-var forceSsl = require('express-force-ssl');
+//var forceSsl = require('express-force-ssl');
 
 
 var api = require('./routes/api');
 
 var app = express();
 
-app.set('forceSSLOptions', {
-  httpsPort: 8443
-});
+//app.set('forceSSLOptions', {
+//  httpsPort: 8443
+//});
 
-app.use(forceSsl);
+//app.use(forceSsl);
 
 var key = fs.readFileSync('./encryption/private.key');
 var cert = fs.readFileSync( './encryption/primary.crt' );
