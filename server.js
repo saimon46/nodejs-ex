@@ -1,32 +1,50 @@
-//  OpenShift sample Node application
-var express = require('express'),
-  app = express(),
-  morgan = require('morgan'),
-  mongoose = require('mongoose'),
-  url = require('url'),
-  WebSocketServer = require("ws").Server,
-  server = require('http').Server(app);
-
-Schema = mongoose.Schema;
-
-var CounterModel;
-
-Object.assign = require('object-assign')
-
-app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'))
-
-app.use(express.static(__dirname + "/public"));
+var express = require('express');
+var path = require('path');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var Counter = require("./models/counter");
+var fs = require('fs');
+var forceSsl = require('express-force-ssl');
 
 
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@ Creation configuration about MongoDB @@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+var api = require('./routes/api');
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+var app = express();
+
+app.set('forceSSLOptions', {
+  httpsPort: 8443
+});
+
+app.use(forceSsl);
+
+var key = fs.readFileSync('./encryption/private.key');
+var cert = fs.readFileSync( './encryption/primary.crt' );
+var ca = fs.readFileSync( './encryption/intermediate.crt' );
+
+var optionsSsl = {
+  key: key,
+  cert: cert,
+  ca: ca
+};
+
+var portHttp = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+  portHttps = process.env.PORTHTTPS || process.env.OPENSHIFT_NODEJS_PORT_HTTPS || 8443,
   ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
   mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
   mongoURLLabel = "";
+
+var serverHttp = require('http').createServer(app);
+var serverHttps = require('https').createServer(optionsSsl, app);
+var webSocketServer = require("ws").Server;
+
+Object.assign = require('object-assign');
+
+app.engine('html', require('ejs').renderFile);
+
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
@@ -34,7 +52,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
     mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
     mongoPassword = process.env[mongoServiceName + '_PASSWORD'],
-    rootWebServer = process.env['ROOT_WEB_SERVER'],
+    rootWebServer = process.env['ROOT_WEB_SERVER'] + ":" + portHttps,
   mongoUser = process.env[mongoServiceName + '_USER'];
 
   if (mongoHost && mongoPort && mongoDatabase) {
@@ -48,29 +66,17 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
-var db = null,
-  dbDetails = new Object();
+var db = null
+var dbDetails = new Object();
+
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Schema DB @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 var counterSchema = mongoose.Schema({
-	count: Number
+  count: Number
 });
-
-counterSchema.methods.increase = function () {
-	this.counter++;
-}
-counterSchema.methods.decrease = function () {
-	this.counter--;
-}
-counterSchema.methods.set = function (num) {
-	this.counter = num;
-}
-counterSchema.methods.reset = function () {
-	this.counter = 1;
-}
 
 var initDb = function(callback) {
   if (mongoURL == null) return;
@@ -87,40 +93,46 @@ var initDb = function(callback) {
     dbDetails.url = mongoURLLabel;
     dbDetails.type = 'MongoDB';
 
-    CounterModel = db.model('counter', counterSchema);
+    Counter.count({}, function( err, count){
+      if(count == 0){
+        counter = new Counter();
+        counter.count = 1;
 
-    CounterModel.count({}, function( err, count){
-    	if(count == 0){
-    		var counter = new CounterModel({ count: 1 });
-
-    		counter.save(function (err) {
-				if (err) return handleError(err);
-			})
-    	}
-	})
+        counter.markModified('object');
+        
+        counter.save();
+      }
 
     console.log('Connected to MongoDB at: %s', mongoURL);
+    });
   });
 };
 
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Configuration start server @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-server.listen(port, ip, function() {
-  console.log("Server running @ http://" + ip + ":" + port);
+initDb(function(err) {
+  console.log('Error connecting to Mongo. Message:\n' + err);
 });
 
 
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Root Website @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'html');
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(morgan('combined'));
+app.use(passport.initialize());
 
 app.get('/', function(req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
+    if (!db) {
     initDb(function(err) {});
   }
   if (db) {
@@ -148,116 +160,19 @@ app.get('/', function(req, res) {
   }
 });
 
+app.use('/api', api);
+
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Pagecount @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Configuration start server @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-app.get('/pagecount', function(req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err) {});
-  }
-  if (db) {
-    db.collection('counts').count(function(err, count) {
-      res.send('{ pageCount: ' + count + '}');
-    });
-  } else {
-    res.send('{ pageCount: -1 }');
-  }
+serverHttp.listen(portHttp, ip, function() {
+  console.log("Server running @ http://" + ip + ":" + portHttp);
 });
 
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Set counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-app.get('/set/:num', function(req, res) {
-  num = req.params.num;
-
-  if(num){
-  	if (!db) {
-	    initDb(function(err) {});
-	}
-	if (db) {
-		if(num <= 0)
-			num = 1;
-	    CounterModel.findOneAndUpdate({},{ $set: { count: num }}, function( err, counter ){
-	    	res.send('{ counter: '+ num +' }');
-		})
-	}
-  }
-  
-});
-
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Increase counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-app.get('/increment', function(req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err) {});
-  }
-  if (db) {
-  	exCount = undefined;
-
-  	CounterModel.findOne( function(err, counter){
-  		exCount = counter.count+1;
-
-  		CounterModel.findOneAndUpdate({},{ $set: { count: exCount }}, function( err, counter ){
-			res.send('{ counter: '+ exCount +' }');
-		})
-  	})
-  }
-});
-
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Decrease counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-app.get('/decrement', function(req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err) {});
-  }
-  if (db) {
-  	exCount = undefined;
-
-  	CounterModel.findOne( function(err, counter){
-  		exCount = counter.count-1;
-
-  		if(exCount = 0)
-  			exCount = 1
-
-  		CounterModel.findOneAndUpdate({},{ $set: { count: exCount }}, function( err, counter ){
-			res.send('{ counter: '+ exCount +' }');
-		})
-  	})
-  }
-});
-
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Reset counter @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-app.get('/reset', function(req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err) {});
-  }
-  if (db) {
-  	CounterModel.findOneAndUpdate({},{ $set: { count: 1 }}, function( err, counter ){
-		res.send('{ counter: '+ 1 +' }');
-	})
-  }
+serverHttps.listen(portHttps, ip, function() {
+  console.log("Server running @ https://" + ip + ":" + portHttps);
 });
 
 
@@ -265,8 +180,8 @@ app.get('/reset', function(req, res) {
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ WebSocket @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-wss = new WebSocketServer({
-    server: server,
+wss = new webSocketServer({
+    server: serverHttps,
     autoAcceptConnections: false
 });
 wss.on('connection', function(ws) {
@@ -288,13 +203,23 @@ wss.on('connection', function(ws) {
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Error Handling @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('Something bad happened!');
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-initDb(function(err) {
-  console.log('Error connecting to Mongo. Message:\n' + err);
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 
