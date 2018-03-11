@@ -52,8 +52,18 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
     mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
     mongoPassword = process.env[mongoServiceName + '_PASSWORD'],
-    rootWebServer = process.env['ROOT_WEB_SERVER'] + ":" + portHttps,
+    rootWebServer = '',
   mongoUser = process.env[mongoServiceName + '_USER'];
+
+  if(rootWebServer == 'localhost'){
+    serverWss = serverHttps;
+    rootWebServer = process.env['ROOT_WEB_SERVER'] + ":" + portHttps,
+  }else{
+    serverWss = serverHttp;
+    rootWebServer = process.env['ROOT_WEB_SERVER'],
+  }
+
+  rootWebServer = process.env['ROOT_WEB_SERVER'] + ":" + portHttps,
 
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
@@ -196,7 +206,7 @@ serverHttps.listen(portHttps, ip, function() {
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 wss = new webSocketServer({
-    server: serverHttps,
+    server: serverWss,
     autoAcceptConnections: false
 });
 wss.on('connection', function(ws) {
