@@ -83,7 +83,7 @@
     </footer>
   </section>
   <script>
-  var ws = new WebSocket('wss://<%= rootWebServer %>');
+  var ws = new WebSocket('<%= rootWebServer %>');
   // event emmited when connected
   ws.onopen = function () {
   console.log('websocket is connected ...')

@@ -57,9 +57,10 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   if(rootWebServer == "localhost"){
     serverWss = serverHttps;
-    rootWebServer = rootWebServer+ ":" + portHttps;
+    rootWebServer = "wss://" + rootWebServer+ ":" + portHttps;
   }else{
     serverWss = serverHttp;
+    rootWebServer = "ws://" + rootWebServer;
   }
 
   if (mongoHost && mongoPort && mongoDatabase) {
