@@ -4,14 +4,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var config = require('./config/database');
+var passport = require('passport');
+var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var Counter = require("./models/counter");
 var fs = require('fs');
 //var forceSsl = require('express-force-ssl');
-
-
-var api = require('./routes/api');
 
 var app = express();
 
@@ -39,7 +39,6 @@ var portHttp = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 
 var serverHttp = require('http').createServer(app);
 var serverHttps = require('https').createServer(optionsSsl, app);
-var webSocketServer = require("ws").Server;
 
 Object.assign = require('object-assign');
 
@@ -55,13 +54,8 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     rootWebServer = process.env['ROOT_WEB_SERVER'],
   mongoUser = process.env[mongoServiceName + '_USER'];
 
-  if(rootWebServer == "localhost"){
-    serverWss = serverHttps;
-    rootWebServer = "wss://" + rootWebServer+ ":" + portHttps;
-  }else{
-    serverWss = serverHttp;
-    rootWebServer = "ws://" + rootWebServer;
-  }
+  serverWss = serverHttps;
+  rootWebServer = "wss://" + rootWebServer + ":" + portHttps;
 
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
@@ -140,31 +134,33 @@ app.use(morgan('combined'));
 app.use(passport.initialize());
 
 app.get('/', function(req, res) {
-    if (!db) {
-    initDb(function(err) {});
-  }
-  if (db) {
-    var col = db.collection('pageCount');
-    // Create a document with request IP and current time of request
-    col.insert({ // TODO modify
-      ip: req.ip,
-      date: Date.now()
-    });
-    col.count(function(err, count) {
+  if(req.cookies.token){
+    jwt.verify(decodeURI(req.cookies.token).substring(4), config.secret, function(err, decoded) {
       if (err) {
-        console.log('Error running count. Message:\n' + err);
+        console.log(err);
+        
+        res.render('index.html', {
+          dbInfo: dbDetails,
+          rootWebServer: rootWebServer,
+          isAuthenticated: false
+        });
+      } else {
+        res.render('index.html', {
+          dbInfo: dbDetails,
+          rootWebServer: rootWebServer,
+          isAuthenticated: true
+        });
+        console.log("Autorizzato!!!");
       }
-      res.render('index.html', {
-        pageCountMessage: count,
-        dbInfo: dbDetails,
-        rootWebServer: rootWebServer
-      });
     });
   } else {
     res.render('index.html', {
-      pageCountMessage: null
+      dbInfo: dbDetails,
+      rootWebServer: rootWebServer,
+      isAuthenticated: false
     });
   }
+
 });
 
 app.get('/pagecount', function(req, res) {
@@ -182,6 +178,12 @@ app.get('/pagecount', function(req, res) {
   }
 });
 
+var param = {};
+param.app = app;
+param.serverWss = serverWss;
+
+var api = require('./routes/api')(param);
+
 app.use('/api', api);
 
 
@@ -195,29 +197,6 @@ serverHttp.listen(portHttp, ip, function() {
 
 serverHttps.listen(portHttps, ip, function() {
   console.log("Server running @ https://" + ip + ":" + portHttps);
-});
-
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ WebSocket @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-wss = new webSocketServer({
-    server: serverWss,
-    autoAcceptConnections: false
-});
-wss.on('connection', function(ws) {
-  console.log("New connection");
-
-  ws.on('message', message => {
-    ws.send("Received: " + message);
-  });
-
-  ws.on('close', () => {
-    console.log('WebSocket was closed')
-  })
-
-  ws.send('Welcome!');
 });
 
 
@@ -241,18 +220,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  console.log(err);
+  //res.render('error');
 });
-
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ BroadCast WebSocket @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-setInterval(function() {
-  wss.clients.forEach(function(client) {
-    client.send('Ciao! Siamo in ' + wss.clients.size);
-  });
-}, 5000);
 
 module.exports = app;
