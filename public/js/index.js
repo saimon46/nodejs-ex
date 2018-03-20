@@ -199,13 +199,11 @@ var rootWebServer = window.location.hostname;
 
 if(window.location.port == 8443)
   rootWebServer = "wss://"+rootWebServer+":"+window.location.port;
-if(window.location.port == 443)
+if(window.location.port == "")
   rootWebServer = "wss://"+rootWebServer;
 
 if(window.location.port == 8080)
   rootWebServer = "ws://"+rootWebServer+":"+window.location.port;
-if(window.location.port == 80)
-  rootWebServer = "ws://"+rootWebServer;
 
 var ws = new WebSocket(rootWebServer);
 // event emmited when connected
