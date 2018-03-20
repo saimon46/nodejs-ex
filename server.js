@@ -11,15 +11,9 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var Counter = require("./models/counter");
 var fs = require('fs');
-//var forceSsl = require('express-force-ssl');
+var forceSsl = require('express-force-ssl');
 
 var app = express();
-
-//app.set('forceSSLOptions', {
-//  httpsPort: 8443
-//});
-
-//app.use(forceSsl);
 
 var key = fs.readFileSync('./encryption/private.key');
 var cert = fs.readFileSync( './encryption/primary.crt' );
@@ -40,6 +34,12 @@ var portHttp = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 var serverHttp = require('http').createServer(app);
 var serverHttps = require('https').createServer(optionsSsl, app);
 
+app.set('forceSSLOptions', {
+  httpsPort: portHttps
+});
+
+app.use(forceSsl);
+
 Object.assign = require('object-assign');
 
 app.engine('html', require('ejs').renderFile);
@@ -51,11 +51,9 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
     mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
     mongoPassword = process.env[mongoServiceName + '_PASSWORD'],
-    rootWebServer = process.env['ROOT_WEB_SERVER'],
   mongoUser = process.env[mongoServiceName + '_USER'];
 
   serverWss = serverHttps;
-  rootWebServer = "wss://" + rootWebServer + ":" + portHttps;
 
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
@@ -141,13 +139,11 @@ app.get('/', function(req, res) {
         
         res.render('index.html', {
           dbInfo: dbDetails,
-          rootWebServer: rootWebServer,
           isAuthenticated: false
         });
       } else {
         res.render('index.html', {
           dbInfo: dbDetails,
-          rootWebServer: rootWebServer,
           isAuthenticated: true
         });
         console.log("Autorizzato!!!");
@@ -156,7 +152,6 @@ app.get('/', function(req, res) {
   } else {
     res.render('index.html', {
       dbInfo: dbDetails,
-      rootWebServer: rootWebServer,
       isAuthenticated: false
     });
   }

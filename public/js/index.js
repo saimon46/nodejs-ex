@@ -88,35 +88,6 @@ var confirmNumberReset = function(num){
   });
 }
 
-var ws = new WebSocket(localStorage.rootWebServer);
-// event emmited when connected
-ws.onopen = function() {
-  console.log('websocket is connected ...');
-  // sending a send event to websocket server
-  ws.send('connected');
-}
-// event emmited when receiving message
-ws.onmessage = function(ev) {
-  mess = JSON.parse(ev.data);
-  if(mess.mess == "RESET"){
-    $("#hiddenset").show();
-  }
-  if(mess.mess == "UPDATE") {
-    $("#hiddenset").hide();
-  }
-  if(mess.mess == "UPDATE" || mess.mess == "RESET"){
-    console.log(getCookie("token"));
-    if(!getCookie("token")){
-      notifyNumberPopup(mess.count);
-    }else{
-      console.log(mess);
-    }
-    notifyNumber(mess.count);
-  }else{
-    console.log(mess);
-  }
-}
-
 $('#plus1').click(function(e) {
   e.preventDefault();
   $.ajax({
@@ -223,3 +194,44 @@ $.ajax({
       $('#number').html(res.count);
     }
   });
+
+var rootWebServer = window.location.hostname;
+
+if(window.location.port == 8443)
+  rootWebServer = "wss://"+rootWebServer+":"+window.location.port;
+if(window.location.port == 443)
+  rootWebServer = "wss://"+rootWebServer;
+
+if(window.location.port == 8080)
+  rootWebServer = "ws://"+rootWebServer+":"+window.location.port;
+if(window.location.port == 80)
+  rootWebServer = "ws://"+rootWebServer;
+
+var ws = new WebSocket(rootWebServer);
+// event emmited when connected
+ws.onopen = function() {
+  console.log('websocket is connected ...');
+  // sending a send event to websocket server
+  ws.send('connected');
+}
+// event emmited when receiving message
+ws.onmessage = function(ev) {
+  mess = JSON.parse(ev.data);
+  if(mess.mess == "RESET"){
+    $("#hiddenset").show();
+  }
+  if(mess.mess == "") {
+    $("#hiddenset").hide();
+  }
+  if(mess.mess == "UPDATE" || mess.mess == "RESET"){
+    console.log(getCookie("token"));
+    if(!getCookie("token")){
+      notifyNumberPopup(mess.count);
+    }else{
+      console.log(mess);
+    }
+    notifyNumber(mess.count);
+  }else{
+    console.log(mess);
+  }
+}

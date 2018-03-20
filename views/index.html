@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Numbers Website</title>
+    <title>Doctor</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
@@ -35,21 +35,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact"><i class="fa fa-phone" aria-hidden="true"></i> Contact</a>
-            </li>
             <% if (isAuthenticated) { %>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#controls"><i class="fa fa-cogs" aria-hidden="true"></i> Controls</a>
+              <a id="logout" class="nav-link js-scroll-trigger" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
             </li>
             <li class="nav-item">
-              <a id="logout" class="nav-link js-scroll-trigger" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+              <a class="nav-link js-scroll-trigger" href="#controls"><i class="fa fa-cogs" aria-hidden="true"></i> Controlli</a>
             </li>
             <% } else { %>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
             </li>
             <% } %>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact"><i class="fa fa-phone" aria-hidden="true"></i> Contatti</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -113,13 +113,13 @@
     </section>
     <footer>
       <div class="container">
-        <p>&copy; Your Website 2018. All Rights Reserved.</p>
+        <p>&copy; saimon46, 2018. All Rights Reserved.</p>
         <ul class="list-inline">
           <li class="list-inline-item">
             <a href="#">Privacy</a>
           </li>
           <li class="list-inline-item">
-            <a href="#">Terms</a>
+            <a href="#">Termini</a>
           </li>
           <li class="list-inline-item">
             <a href="#">FAQ</a>
@@ -146,14 +146,14 @@
                 <label for="password"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
                 <input type="password" minlength=6 class="form-control" id="password" placeholder="Enter password" required>
                 <label id="errorlogin" class="modal-error" style="display: none;">
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Username or password invalid!
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Username o password non validi!
                 </label>
               </div>
               <button type="submit" class="btn btn-success btn-block"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Esci</button>
           </div>
         </div>
       </div>
@@ -169,8 +169,5 @@
     <script type="text/javascript" src="js/crypto-js.js"></script>
     <script src="js/index.js"></script>
     <script src="js/bootstrap-notify.min.js"></script>
-    <script type="text/javascript">
-    localStorage.rootWebServer = '<%= rootWebServer %>';
-    </script>
   </body>
 </html>
