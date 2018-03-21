@@ -1,90 +1,224 @@
 Server running @ http://0.0.0.0:80
 Server running @ https://0.0.0.0:443
 Connected to MongoDB at: mongodb://localhost:27017/numbers
+[0mGET / [32m200 [0m7.129 ms - 6296[0m
+128.141.193.58 - - [21/Mar/2018:12:39:15 +0000] "GET / HTTP/1.1" 200 6296 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [32m200 [0m1.060 ms - 12958[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [32m200 [0m1.441 ms - 31000[0m
+[0mGET /device-mockups/device-mockups.min.css [32m200 [0m1.299 ms - 17157[0m
+[0mGET /css/new-age.css [32m200 [0m1.770 ms - 8058[0m
+[0mGET /css/animate.css [32m200 [0m2.353 ms - 75052[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [32m200 [0m3.462 ms - 144877[0m
+[0mGET /css/index.css [32m200 [0m0.563 ms - 245[0m
+[0mGET /vendor/jquery/jquery.min.js [32m200 [0m0.574 ms - 86927[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [32m200 [0m0.512 ms - 67742[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [32m200 [0m0.535 ms - 2532[0m
+[0mGET /js/new-age.min.js [32m200 [0m0.706 ms - 667[0m
+[0mGET /js/crypto-js.js [32m200 [0m0.604 ms - 191936[0m
+[0mGET /js/index.js [32m200 [0m0.517 ms - 5358[0m
+[0mGET /js/bootstrap-notify.min.js [32m200 [0m0.628 ms - 8123[0m
+[0mGET /img/bg-pattern.png [32m200 [0m2.569 ms - 633[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [32m200 [0m1.257 ms - 77160[0m
+[0mGET /api/get [32m200 [0m10.167 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:39:16 +0000] "GET /api/get HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET / [36m304 [0m1.987 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:39:51 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{"mess":"WebSocket was closed"}
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m1.184 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.502 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m0.397 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m0.330 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.382 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m0.475 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.318 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.932 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.551 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.531 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.404 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m0.713 ms - -[0m
+[0mGET /js/index.js [36m304 [0m0.486 ms - -[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.401 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m1.106 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.637 ms - -[0m
+[0mGET /api/get [36m304 [0m2.861 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:39:51 +0000] "GET /api/get HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET / [32m200 [0m1.044 ms - 6296[0m
+128.141.193.58 - - [21/Mar/2018:12:39:55 +0000] "GET / HTTP/1.1" 200 6296 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{"mess":"WebSocket was closed"}
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [32m200 [0m1.933 ms - 12958[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [32m200 [0m2.032 ms - 31000[0m
+[0mGET /css/new-age.css [32m200 [0m2.492 ms - 8058[0m
+[0mGET /css/animate.css [32m200 [0m1.559 ms - 75052[0m
+[0mGET /device-mockups/device-mockups.min.css [32m200 [0m0.908 ms - 17157[0m
+[0mGET /css/index.css [32m200 [0m0.548 ms - 245[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [32m200 [0m2.242 ms - 144877[0m
+[0mGET /vendor/jquery/jquery.min.js [32m200 [0m0.507 ms - 86927[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [32m200 [0m0.620 ms - 67742[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [32m200 [0m0.540 ms - 2532[0m
+[0mGET /js/new-age.min.js [32m200 [0m0.577 ms - 667[0m
+[0mGET /js/bootstrap-notify.min.js [32m200 [0m1.054 ms - 8123[0m
+[0mGET /js/index.js [32m200 [0m1.072 ms - 5358[0m
+[0mGET /js/crypto-js.js [32m200 [0m1.603 ms - 191936[0m
+[0mGET /img/bg-pattern.png [32m200 [0m0.640 ms - 633[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [32m200 [0m0.461 ms - 77160[0m
+[0mGET /api/get [32m200 [0m1.872 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:39:55 +0000] "GET /api/get HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET / [32m200 [0m0.697 ms - 6296[0m
+128.141.193.58 - - [21/Mar/2018:12:39:57 +0000] "GET / HTTP/1.1" 200 6296 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{"mess":"WebSocket was closed"}
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [32m200 [0m2.081 ms - 12958[0m
+[0mGET /css/new-age.css [32m200 [0m2.044 ms - 8058[0m
+[0mGET /device-mockups/device-mockups.min.css [32m200 [0m2.190 ms - 17157[0m
+[0mGET /css/animate.css [32m200 [0m2.114 ms - 75052[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [32m200 [0m2.233 ms - 144877[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [32m200 [0m1.014 ms - 31000[0m
+[0mGET /css/index.css [32m200 [0m1.483 ms - 245[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [32m200 [0m1.335 ms - 67742[0m
+[0mGET /vendor/jquery/jquery.min.js [32m200 [0m1.415 ms - 86927[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [32m200 [0m0.561 ms - 2532[0m
+[0mGET /js/new-age.min.js [32m200 [0m0.576 ms - 667[0m
+[0mGET /js/crypto-js.js [32m200 [0m0.403 ms - 191936[0m
+[0mGET /js/index.js [32m200 [0m0.585 ms - 5358[0m
+[0mGET /js/bootstrap-notify.min.js [32m200 [0m2.767 ms - 8123[0m
+[0mGET /img/bg-pattern.png [32m200 [0m1.016 ms - 633[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [32m200 [0m0.925 ms - 77160[0m
+[0mGET /api/get [32m200 [0m1.707 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:39:57 +0000] "GET /api/get HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET / [32m200 [0m0.758 ms - 6296[0m
+128.141.193.58 - - [21/Mar/2018:12:40:05 +0000] "GET / HTTP/1.1" 200 6296 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [32m200 [0m1.510 ms - 12958[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [32m200 [0m0.607 ms - 144877[0m
+[0mGET /device-mockups/device-mockups.min.css [32m200 [0m4.772 ms - 17157[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [32m200 [0m5.001 ms - 31000[0m
+[0mGET /css/new-age.css [32m200 [0m1.720 ms - 8058[0m
+[0mGET /css/animate.css [32m200 [0m1.956 ms - 75052[0m
+[0mGET /css/index.css [32m200 [0m0.530 ms - 245[0m
+[0mGET /vendor/jquery/jquery.min.js [32m200 [0m0.570 ms - 86927[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [32m200 [0m0.880 ms - 2532[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [32m200 [0m0.990 ms - 67742[0m
+[0mGET /js/new-age.min.js [32m200 [0m0.510 ms - 667[0m
+[0mGET /js/index.js [32m200 [0m0.573 ms - 5358[0m
+[0mGET /js/crypto-js.js [32m200 [0m0.544 ms - 191936[0m
+[0mGET /js/bootstrap-notify.min.js [32m200 [0m0.560 ms - 8123[0m
+[0mGET /img/bg-pattern.png [32m200 [0m2.887 ms - 633[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [32m200 [0m0.530 ms - 77160[0m
+[0mGET /api/get [32m200 [0m1.519 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:40:06 +0000] "GET /api/get HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
+New connection
+{"mess":"WebSocket was closed"}
+{"mess":"WebSocket was closed"}
+[0mGET / [36m304 [0m0.799 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:41:17 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m0.369 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.333 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m0.365 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.602 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m0.358 ms - -[0m
+[0mGET /css/index.css [36m304 [0m1.151 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m0.782 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.504 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.344 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.380 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.312 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m1.012 ms - -[0m
+[0mGET /js/index.js [36m304 [0m0.760 ms - -[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.538 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m0.443 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.369 ms - -[0m
+[0mGET /api/get [36m304 [0m1.657 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:41:17 +0000] "GET /api/get HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET / [32m200 [0m1.132 ms - 6306[0m
+128.141.193.58 - - [21/Mar/2018:12:42:37 +0000] "GET / HTTP/1.1" 200 6306 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{"mess":"WebSocket was closed"}
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m0.389 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.371 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m0.891 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.426 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m2.317 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m0.337 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.445 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.386 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.758 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.430 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.295 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m0.350 ms - -[0m
+[0mGET /js/index.js [36m304 [0m0.286 ms - -[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.347 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m0.356 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.360 ms - -[0m
+[0mGET /api/get [36m304 [0m1.732 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:42:37 +0000] "GET /api/get HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m0.376 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.913 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m0.673 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.470 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m0.660 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m0.304 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.360 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js.map [32m200 [0m0.610 ms - 273872[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css.map [32m200 [0m0.605 ms - 551641[0m
 Server running @ http://0.0.0.0:80
 Server running @ https://0.0.0.0:443
 Connected to MongoDB at: mongodb://localhost:27017/numbers
-Server running @ http://0.0.0.0:80
-Server running @ https://0.0.0.0:443
-Connected to MongoDB at: mongodb://localhost:27017/numbers
+[0mGET / [36m304 [0m5.619 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:48:12 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m1.662 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.552 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m0.792 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.402 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m0.311 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.334 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m0.641 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.413 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.635 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.530 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m0.354 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.237 ms - -[0m
+[0mGET /js/index.js [36m304 [0m0.652 ms - -[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.485 ms - -[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css.map [36m304 [0m0.406 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m0.377 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.401 ms - -[0m
+[0mGET /api/get [36m304 [0m9.583 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:48:13 +0000] "GET /api/get HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js.map [36m304 [0m0.426 ms - -[0m
+[0mPOST /api/signin [32m200 [0m367.607 ms - 16[0m
+128.141.193.58 - - [21/Mar/2018:12:48:30 +0000] "POST /api/signin HTTP/1.1" 200 16 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
 Autorizzato!!!
-[0mGET / [32m200 [0m6.893 ms - 7442[0m
-90.41.30.239 - - [20/Mar/2018:23:05:29 +0000] "GET / HTTP/1.1" 200 7442 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-[0mGET /vendor/bootstrap/css/bootstrap.min.css [32m200 [0m3.315 ms - 144877[0m
-[0mGET /css/animate.css [32m200 [0m1.028 ms - 75052[0m
-[0mGET /css/index.css [32m200 [0m0.854 ms - 245[0m
-[0mGET /vendor/font-awesome/css/font-awesome.min.css [32m200 [0m0.731 ms - 31000[0m
-[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [32m200 [0m0.624 ms - 12958[0m
-[0mGET /device-mockups/device-mockups.min.css [32m200 [0m0.738 ms - 17157[0m
-[0mGET /css/new-age.css [32m200 [0m0.652 ms - 8058[0m
-[0mGET /vendor/jquery/jquery.min.js [32m200 [0m0.620 ms - 86927[0m
-[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [32m200 [0m1.289 ms - 67742[0m
-[0mGET /vendor/jquery-easing/jquery.easing.min.js [32m200 [0m0.949 ms - 2532[0m
-[0mGET /js/new-age.min.js [32m200 [0m0.625 ms - 667[0m
-[0mGET /js/index.js [32m200 [0m0.590 ms - 5358[0m
-[0mGET /js/bootstrap-notify.min.js [32m200 [0m0.637 ms - 8123[0m
-[0mGET /img/bg-pattern.png [32m200 [0m0.653 ms - 633[0m
-[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [32m200 [0m0.675 ms - 77160[0m
-[0mGET /js/crypto-js.js [32m200 [0m0.551 ms - 191936[0m
-[0mGET /api/get [32m200 [0m9.834 ms - 52[0m
-90.41.30.239 - - [20/Mar/2018:23:05:33 +0000] "GET /api/get HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-New connection
-[0mGET /img/bg-pexel.jpg [32m200 [0m0.618 ms - 3470954[0m
-[0mPOST /api/increment [32m200 [0m9.920 ms - 52[0m
-90.41.30.239 - - [20/Mar/2018:23:06:05 +0000] "POST /api/increment HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-[0mPOST /api/signout [36m302 [0m3.561 ms - 23[0m
-90.41.30.239 - - [20/Mar/2018:23:06:12 +0000] "POST /api/signout HTTP/1.1" 302 23 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-[0mGET / [32m200 [0m1.621 ms - 6296[0m
-90.41.30.239 - - [20/Mar/2018:23:06:12 +0000] "GET / HTTP/1.1" 200 6296 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-[0mGET / [32m200 [0m0.977 ms - 6296[0m
-90.41.30.239 - - [20/Mar/2018:23:06:12 +0000] "GET / HTTP/1.1" 200 6296 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
+[0mGET / [32m200 [0m4.573 ms - 7443[0m
+128.141.193.58 - - [21/Mar/2018:12:48:30 +0000] "GET / HTTP/1.1" 200 7443 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
 {"mess":"WebSocket was closed"}
-[0mGET /css/new-age.css [32m200 [0m0.607 ms - 8058[0m
-[0mGET /css/animate.css [32m200 [0m0.541 ms - 75052[0m
-[0mGET /css/index.css [32m200 [0m0.529 ms - 245[0m
-[0mGET /vendor/bootstrap/css/bootstrap.min.css [32m200 [0m0.754 ms - 144877[0m
-[0mGET /vendor/font-awesome/css/font-awesome.min.css [32m200 [0m0.560 ms - 31000[0m
-[0mGET /device-mockups/device-mockups.min.css [32m200 [0m0.794 ms - 17157[0m
-[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [32m200 [0m0.751 ms - 12958[0m
-[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.974 ms - -[0m
-[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.555 ms - -[0m
-[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.555 ms - -[0m
-[0mGET /js/new-age.min.js [36m304 [0m0.374 ms - -[0m
-[0mGET /js/crypto-js.js [36m304 [0m0.491 ms - -[0m
-[0mGET /js/index.js [36m304 [0m0.575 ms - -[0m
-[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.448 ms - -[0m
-[0mGET /img/bg-pattern.png [36m304 [0m0.449 ms - -[0m
-[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.418 ms - -[0m
-[0mGET /api/get [32m200 [0m1.669 ms - 52[0m
-90.41.30.239 - - [20/Mar/2018:23:06:14 +0000] "GET /api/get HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m1.006 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m2.289 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m0.519 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m1.083 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.651 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m1.114 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.825 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.609 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.299 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.766 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.480 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m1.201 ms - -[0m
+[0mGET /js/index.js [36m304 [0m0.864 ms - -[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.654 ms - -[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css.map [36m304 [0m0.521 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m2.375 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m2.018 ms - -[0m
+[0mGET /api/get [36m304 [0m2.302 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:48:31 +0000] "GET /api/get HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js.map [36m304 [0m0.414 ms - -[0m
 New connection
-[0mPOST /api/signin [32m200 [0m291.492 ms - 16[0m
-90.41.30.239 - - [20/Mar/2018:23:06:28 +0000] "POST /api/signin HTTP/1.1" 200 16 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-Autorizzato!!!
-[0mGET / [32m200 [0m1.123 ms - 7442[0m
-90.41.30.239 - - [20/Mar/2018:23:06:28 +0000] "GET / HTTP/1.1" 200 7442 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-{"mess":"WebSocket was closed"}
-[0mGET /css/animate.css [32m200 [0m0.703 ms - 75052[0m
-[0mGET /css/index.css [32m200 [0m0.608 ms - 245[0m
-[0mGET /vendor/font-awesome/css/font-awesome.min.css [32m200 [0m0.798 ms - 31000[0m
-[0mGET /vendor/bootstrap/css/bootstrap.min.css [32m200 [0m1.458 ms - 144877[0m
-[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [32m200 [0m2.764 ms - 12958[0m
-[0mGET /device-mockups/device-mockups.min.css [32m200 [0m0.647 ms - 17157[0m
-[0mGET /css/new-age.css [32m200 [0m0.688 ms - 8058[0m
-[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.427 ms - -[0m
-[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.448 ms - -[0m
-[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.418 ms - -[0m
-[0mGET /js/new-age.min.js [36m304 [0m0.514 ms - -[0m
-[0mGET /js/crypto-js.js [36m304 [0m0.464 ms - -[0m
-[0mGET /js/index.js [36m304 [0m0.432 ms - -[0m
-[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.472 ms - -[0m
-[0mGET /img/bg-pattern.png [36m304 [0m0.521 ms - -[0m
-[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.419 ms - -[0m
-[0mGET /api/get [32m200 [0m1.611 ms - 52[0m
-90.41.30.239 - - [20/Mar/2018:23:06:29 +0000] "GET /api/get HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-New connection
+[0mGET /img/bg-pexel.jpg [32m200 [0m4.180 ms - 775975[0m
 { Error: Not Found
-    at /var/www/server.js:208:13
+    at /var/www/server.js:206:13
     at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
     at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
     at /var/www/node_modules/express/lib/router/index.js:284:7
@@ -100,8 +234,175 @@ New connection
     at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
     at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
     at /var/www/node_modules/express/lib/router/index.js:284:7 status: 404 }
-[0mGET /img/bg-pexel.jpg [32m200 [0m0.567 ms - 3470954[0m
+[0mPOST /api/increment [32m200 [0m9.119 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:48:44 +0000] "POST /api/increment HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mPOST /api/increment [32m200 [0m3.612 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:49:02 +0000] "POST /api/increment HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mPOST /api/decrement [32m200 [0m3.738 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:49:09 +0000] "POST /api/decrement HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mPOST /api/reset [32m200 [0m5.320 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:12:49:12 +0000] "POST /api/reset HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
 [0mGET /favicon.ico [0m- [0m- ms - -[0m
-90.41.30.239 - - [20/Mar/2018:23:07:02 +0000] "GET /favicon.ico HTTP/1.1" - - "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
-[0mPOST /api/reset [32m200 [0m3.784 ms - 52[0m
-90.41.30.239 - - [20/Mar/2018:23:07:08 +0000] "POST /api/reset HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36"
+128.141.193.58 - - [21/Mar/2018:12:50:31 +0000] "GET /favicon.ico HTTP/1.1" - - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{ Error: Not Found
+    at /var/www/server.js:206:13
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/var/www/node_modules/express/lib/router/index.js:335:12)
+    at next (/var/www/node_modules/express/lib/router/index.js:275:10)
+    at initialize (/var/www/node_modules/passport/lib/middleware/initialize.js:53:5)
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/var/www/node_modules/express/lib/router/index.js:335:12)
+    at next (/var/www/node_modules/express/lib/router/index.js:275:10)
+    at logger (/var/www/node_modules/morgan/index.js:144:5)
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7 status: 404 }
+[0mGET /favicon.ico [0m- [0m- ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:52:32 +0000] "GET /favicon.ico HTTP/1.1" - - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{ Error: Not Found
+    at /var/www/server.js:206:13
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/var/www/node_modules/express/lib/router/index.js:335:12)
+    at next (/var/www/node_modules/express/lib/router/index.js:275:10)
+    at initialize (/var/www/node_modules/passport/lib/middleware/initialize.js:53:5)
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/var/www/node_modules/express/lib/router/index.js:335:12)
+    at next (/var/www/node_modules/express/lib/router/index.js:275:10)
+    at logger (/var/www/node_modules/morgan/index.js:144:5)
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7 status: 404 }
+[0mGET /favicon.ico [0m- [0m- ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:54:32 +0000] "GET /favicon.ico HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{ Error: Not Found
+    at /var/www/server.js:206:13
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/var/www/node_modules/express/lib/router/index.js:335:12)
+    at next (/var/www/node_modules/express/lib/router/index.js:275:10)
+    at initialize (/var/www/node_modules/passport/lib/middleware/initialize.js:53:5)
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/var/www/node_modules/express/lib/router/index.js:335:12)
+    at next (/var/www/node_modules/express/lib/router/index.js:275:10)
+    at logger (/var/www/node_modules/morgan/index.js:144:5)
+    at Layer.handle [as handle_request] (/var/www/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/www/node_modules/express/lib/router/index.js:317:13)
+    at /var/www/node_modules/express/lib/router/index.js:284:7 status: 404 }
+[0mGET /favicon.ico [0m- [0m- ms - -[0m
+128.141.193.58 - - [21/Mar/2018:12:59:33 +0000] "GET /favicon.ico HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+Autorizzato!!!
+[0mGET / [36m304 [0m1.133 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:13:04:39 +0000] "GET / HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{"mess":"WebSocket was closed"}
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m0.412 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.594 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m0.409 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.361 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m1.353 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m1.121 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.939 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.688 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.481 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.408 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.412 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m0.663 ms - -[0m
+[0mGET /js/index.js [32m200 [0m1.224 ms - 5254[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.653 ms - -[0m
+[0mGET /img/bg-pexel.jpg [36m304 [0m1.362 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.872 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m0.653 ms - -[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css.map [36m304 [0m0.437 ms - -[0m
+[0mGET /api/get [36m304 [0m1.547 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:13:04:39 +0000] "GET /api/get HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js.map [36m304 [0m0.432 ms - -[0m
+New connection
+[0mPOST /api/increment [32m200 [0m8.070 ms - 52[0m
+128.141.193.58 - - [21/Mar/2018:13:04:43 +0000] "POST /api/increment HTTP/1.1" 200 52 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+Server running @ http://0.0.0.0:80
+Server running @ https://0.0.0.0:443
+Connected to MongoDB at: mongodb://localhost:27017/numbers
+[0mPOST /api/reset [32m200 [0m19.044 ms - 86[0m
+128.141.193.58 - - [21/Mar/2018:14:17:59 +0000] "POST /api/reset HTTP/1.1" 200 86 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+Autorizzato!!!
+[0mGET / [36m304 [0m4.693 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:14:18:08 +0000] "GET / HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m1.600 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.592 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m3.665 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m3.218 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m2.956 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m2.720 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m0.608 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.433 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.306 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.784 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.610 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m0.484 ms - -[0m
+[0mGET /js/index.js [36m304 [0m0.567 ms - -[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.377 ms - -[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css.map [36m304 [0m0.462 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m0.438 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.370 ms - -[0m
+[0mGET /img/image.jpg [36m304 [0m0.235 ms - -[0m
+[0mGET /api/get [32m200 [0m1.844 ms - 86[0m
+128.141.193.58 - - [21/Mar/2018:14:18:09 +0000] "GET /api/get HTTP/1.1" 200 86 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js.map [36m304 [0m0.476 ms - -[0m
+{ _id: 5aa1c2b74f5337267177c058,
+  __v: 0,
+  count: 2,
+  time: 2018-03-21T14:18:11.301Z }
+[0mPOST /api/increment [32m200 [0m6.178 ms - 86[0m
+128.141.193.58 - - [21/Mar/2018:14:18:11 +0000] "POST /api/increment HTTP/1.1" 200 86 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+[0mPOST /api/reset [32m200 [0m2.881 ms - 86[0m
+128.141.193.58 - - [21/Mar/2018:14:18:13 +0000] "POST /api/reset HTTP/1.1" 200 86 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+Autorizzato!!!
+[0mGET / [36m304 [0m1.599 ms - -[0m
+128.141.193.58 - - [21/Mar/2018:14:23:30 +0000] "GET / HTTP/1.1" 304 - "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{"mess":"WebSocket was closed"}
+[0mGET /vendor/bootstrap/css/bootstrap.min.css [36m304 [0m0.407 ms - -[0m
+[0mGET /vendor/font-awesome/css/font-awesome.min.css [36m304 [0m0.337 ms - -[0m
+[0mGET /vendor/simple-line-icons/css/simple-line-icons.css [36m304 [0m1.092 ms - -[0m
+[0mGET /device-mockups/device-mockups.min.css [36m304 [0m0.812 ms - -[0m
+[0mGET /css/new-age.css [36m304 [0m0.492 ms - -[0m
+[0mGET /css/animate.css [36m304 [0m0.271 ms - -[0m
+[0mGET /vendor/jquery/jquery.min.js [36m304 [0m0.583 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.396 ms - -[0m
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js [36m304 [0m0.242 ms - -[0m
+[0mGET /vendor/jquery-easing/jquery.easing.min.js [36m304 [0m0.222 ms - -[0m
+[0mGET /js/new-age.min.js [36m304 [0m0.237 ms - -[0m
+[0mGET /js/crypto-js.js [36m304 [0m1.384 ms - -[0m
+[0mGET /js/index.js [36m304 [0m0.362 ms - -[0m
+[0mGET /js/bootstrap-notify.min.js [36m304 [0m0.418 ms - -[0m
+[0mGET /vendor/bootstrap/css/bootstrap.min.css.map [36m304 [0m0.395 ms - -[0m
+[0mGET /img/image.jpg [36m304 [0m1.158 ms - -[0m
+[0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 [36m304 [0m0.766 ms - -[0m
+[0mGET /img/bg-pattern.png [36m304 [0m0.554 ms - -[0m
+[0mGET /api/get [32m200 [0m1.512 ms - 86[0m
+128.141.193.58 - - [21/Mar/2018:14:23:30 +0000] "GET /api/get HTTP/1.1" 200 86 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+New connection
+[0mGET /vendor/bootstrap/js/bootstrap.bundle.min.js.map [36m304 [0m0.366 ms - -[0m
+{ _id: 5aa1c2b74f5337267177c058,
+  __v: 0,
+  count: 2,
+  time: 2018-03-21T14:23:32.695Z }
+[0mPOST /api/increment [32m200 [0m3.022 ms - 86[0m
+128.141.193.58 - - [21/Mar/2018:14:23:32 +0000] "POST /api/increment HTTP/1.1" 200 86 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{ _id: 5aa1c2b74f5337267177c058,
+  __v: 0,
+  count: 3,
+  time: 2018-03-21T14:28:28.842Z }
+[0mPOST /api/increment [32m200 [0m3.031 ms - 86[0m
+128.141.193.58 - - [21/Mar/2018:14:28:28 +0000] "POST /api/increment HTTP/1.1" 200 86 "https://saimon46.ddns.net/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+{"mess":"WebSocket was closed"}

@@ -85,7 +85,9 @@ router.post('/set', passport.authenticate('jwt', { session: false}), function(re
   var token = getToken(req.headers);
   if (token) {
     Counter.findOne(function (err, counter) {
-      counter.count = req.body.counter
+      counter.count = req.body.counter;
+      counter.time = new Date();
+      console.log(counter);
 
       counter.save(function(err,updatedCounter) {
         if (err) {
@@ -95,7 +97,8 @@ router.post('/set', passport.authenticate('jwt', { session: false}), function(re
       res.json(counter);
       sendMessageWs({
         mess: "UPDATE",
-        count: counter.count
+        count: counter.count,
+        time: counter.time
       });
 
     });
@@ -109,6 +112,8 @@ router.post('/increment', passport.authenticate('jwt', { session: false}), funct
   if (token) {
     Counter.findOne(function (err, counter) {
       counter.count = counter.count + 1
+      counter.time = new Date();
+      console.log(counter);
 
       counter.save(function(err,updatedCounter) {
         if (err) {
@@ -118,7 +123,8 @@ router.post('/increment', passport.authenticate('jwt', { session: false}), funct
       res.json(counter);
       sendMessageWs({
         mess: "UPDATE",
-        count: counter.count
+        count: counter.count,
+        time: counter.time
       });
 
     });
@@ -134,6 +140,9 @@ router.post('/decrement', passport.authenticate('jwt', { session: false}), funct
       if(counter.count > 1)
         counter.count = counter.count - 1;
 
+      counter.time = new Date();
+      console.log(counter);
+
       counter.save(function(err,updatedCounter) {
         if (err) {
           return res.json({success: false, msg: 'Save counter failed.'});
@@ -142,7 +151,8 @@ router.post('/decrement', passport.authenticate('jwt', { session: false}), funct
       res.json(counter);
       sendMessageWs({
         mess: "UPDATE",
-        count: counter.count
+        count: counter.count,
+        time: counter.time
       });
       
     });
@@ -156,6 +166,7 @@ router.post('/reset', passport.authenticate('jwt', { session: false}), function(
   if (token) {
     Counter.findOne(function (err, counter) {
       counter.count = 1
+      counter.time = new Date();
 
       counter.save(function(err,updatedCounter) {
         if (err) {
@@ -165,7 +176,8 @@ router.post('/reset', passport.authenticate('jwt', { session: false}), function(
       res.json(counter);
       sendMessageWs({
         mess: "RESET",
-        count: counter.count
+        count: counter.count,
+        time: counter.time
       });
 
     });

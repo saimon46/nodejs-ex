@@ -18,14 +18,12 @@ var forceSsl = require('express-force-ssl');
 
 var app = express();
 
-var key = fs.readFileSync('./encryption/private.key');
-var cert = fs.readFileSync( './encryption/primary.crt' );
-var ca = fs.readFileSync( './encryption/intermediate.crt' );
+var key = fs.readFileSync(process.env.PRIVATE_KEY);
+var cert = fs.readFileSync(process.env.CERT);
 
 var optionsSsl = {
   key: key,
   cert: cert,
-  ca: ca
 };
 
 var portHttp = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,

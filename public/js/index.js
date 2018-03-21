@@ -14,6 +14,39 @@ function getCookie(cname) {
     return "";
 };
 
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+
+function formatDate(date) {
+  var monthNames = [
+    "Gennaio", "Febbraio", "Marzo",
+    "Aprile", "Maggio", "Giugno", "Luglio",
+    "Agosto", "Settembre", "Ottobre",
+    "Novembre", "Dicembre"
+  ];
+
+  var weekdayNames = [
+    "Lunedì", "Martedì", "Mercoledì",
+    "Giovedì", "Venerdì", "Sabato", "Domenica"
+  ];
+
+  var weekday = date.getDay();
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  var hours = addZero(date.getHours());
+  var minutes = addZero(date.getMinutes());
+  var seconds = addZero(date.getSeconds());
+
+  return weekdayNames[weekday] + ", " + day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + hours + ':' + minutes + ':' + seconds;
+}
+
 /*$.ajax({
     type: "POST",
     url: "/api/token",
@@ -29,8 +62,9 @@ function getCookie(cname) {
     }
   });*/
 
-var notifyNumber = function(num) {
-  $('#number').html(num);
+var notifyNumber = function(counter) {
+  $('#number').html(counter.count);
+  $('#time').html(formatDate(new Date(counter.time)));
 }
 
 var notifyNumberPopup = function(num){
@@ -192,6 +226,7 @@ $.ajax({
     url: "/api/get",
     success: function(res){
       $('#number').html(res.count);
+      $('#time').html(formatDate(new Date(res.time)));
     }
   });
 
@@ -222,14 +257,9 @@ ws.onmessage = function(ev) {
     $("#hiddenset").hide();
   }
   if(mess.mess == "UPDATE" || mess.mess == "RESET"){
-    console.log(getCookie("token"));
     if(!getCookie("token")){
       notifyNumberPopup(mess.count);
-    }else{
-      console.log(mess);
     }
-    notifyNumber(mess.count);
-  }else{
-    console.log(mess);
+    notifyNumber(mess);
   }
 }
